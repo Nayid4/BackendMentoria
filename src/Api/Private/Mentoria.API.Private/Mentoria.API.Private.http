@@ -1,0 +1,6 @@
+@Mentoria.API.Private_HostAddress = http://localhost:5014
+
+GET {{Mentoria.API.Private_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
