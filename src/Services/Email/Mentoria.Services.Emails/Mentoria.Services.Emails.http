@@ -1,0 +1,6 @@
+@Mentoria.Services.Emails_HostAddress = http://localhost:5172
+
+GET {{Mentoria.Services.Emails_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

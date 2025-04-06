@@ -1,23 +1,12 @@
-var builder = WebApplication.CreateBuilder(args);
+using Mentoria.Shared.Setup.API;
 
-// Add services to the container.
-
-builder.Services.AddControllers();
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-builder.Services.AddOpenApi();
-
-var app = builder.Build();
-
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+WebApplication app = DefaultMentoriaWebApplication.Create(args, webApplicationBuilder =>
 {
-    app.MapOpenApi();
-}
+    webApplicationBuilder.Services.AddReverseProxy()
+        .LoadFromConfig(webApplicationBuilder.Configuration.GetSection("ReverseProxy"));
+    webApplicationBuilder.Services.AddServiceBusIntegrationPublisher(webApplicationBuilder.Configuration);
+});
 
-app.UseHttpsRedirection();
+app.MapReverseProxy();
 
-app.UseAuthorization();
-
-app.MapControllers();
-
-app.Run();
+DefaultMentoriaWebApplication.Run(app);

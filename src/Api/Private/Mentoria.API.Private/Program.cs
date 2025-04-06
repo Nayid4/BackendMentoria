@@ -1,23 +1,22 @@
-var builder = WebApplication.CreateBuilder(args);
+using Mentoria.Shared.Setup.API;
+using Mentoria.Shared.Setup.API.RateLimiting;
 
-// Add services to the container.
-
-builder.Services.AddControllers();
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-builder.Services.AddOpenApi();
-
-var app = builder.Build();
-
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+WebApplication app = DefaultMentoriaWebApplication.Create(args, webappBuilder =>
 {
-    app.MapOpenApi();
-}
+    webappBuilder.Services.AddReverseProxy()
+        .LoadFromConfig(webappBuilder.Configuration.GetSection("ReverseProxy"));
 
-app.UseHttpsRedirection();
+    webappBuilder.Services.AddApiToken(webappBuilder.Configuration);
+});
 
-app.UseAuthorization();
+app.UseApiTokenMiddleware();
+app.UseRateLimiting();
+app.MapGet("/", () => "Hello World!");
+app.MapGet("/rate-limiting-test", () =>
+{
+    return "Hello World!";
+}).RequireRateLimiting(new DefaultRateLimiterPolicy());
 
-app.MapControllers();
+app.MapReverseProxy();
 
-app.Run();
+DefaultMentoriaWebApplication.Run(app);
