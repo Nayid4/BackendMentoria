@@ -1,12 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
 
 namespace Mentoria.Shared.Communication.Messages
 {
-    internal class Metadata
+    public record Metadata
     {
+        public string CorrelationId { get; }
+        public DateTime CreatedUtc { get; }
+
+        public Metadata(string correlationId, DateTime createdUtc)
+        {
+            CorrelationId = correlationId;
+            CreatedUtc = createdUtc;
+        }
     }
 }

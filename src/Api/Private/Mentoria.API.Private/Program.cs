@@ -1,4 +1,5 @@
 using Mentoria.Shared.Setup.API;
+using Mentoria.Shared.Setup.API.Key;
 using Mentoria.Shared.Setup.API.RateLimiting;
 
 WebApplication app = DefaultMentoriaWebApplication.Create(args, webappBuilder =>
@@ -10,12 +11,12 @@ WebApplication app = DefaultMentoriaWebApplication.Create(args, webappBuilder =>
 });
 
 app.UseApiTokenMiddleware();
-app.UseRateLimiting();
+app.UseRateLimiter();
 app.MapGet("/", () => "Hello World!");
 app.MapGet("/rate-limiting-test", () =>
 {
     return "Hello World!";
-}).RequireRateLimiting(new DefaultRateLimiterPolicy());
+}).RequireRateLimiting(new MentoriaRateLimiterPolicy());
 
 app.MapReverseProxy();
 

@@ -47,6 +47,20 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mentoria.Shared.EventSourci
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mentoria.Shared.Discovery", "src\Shared\Mentoria.Shared.Discovery\Mentoria.Shared.Discovery.csproj", "{D02DA5E4-BBE2-4E37-9CA0-F6A88272DB6A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mentoria.Shared.Databases.MongoDb", "src\Shared\Mentoria.Shared.Databases\Mentoria.Shared.Databases.MongoDb\Mentoria.Shared.Databases.MongoDb.csproj", "{021C6EB2-EEF7-4458-9193-B18A1D4779A8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mentoria.Shared.Databases.SqlServer", "src\Shared\Mentoria.Shared.Databases\Mentoria.Shared.Databases.SqlServer\Mentoria.Shared.Databases.SqlServer.csproj", "{C3307765-246A-4EC6-B849-DC1A1A4965A1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Mentoring", "Mentoring", "{62CD510E-2B4B-4943-9931-5BD977FD5AC7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mentoria.Services.Mentoring.Domain", "src\Services\Mentoring\Mentoria.Services.Mentoring.Domain\Mentoria.Services.Mentoring.Domain.csproj", "{34382CF6-8610-467E-B8EB-E00E1CD33DD3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mentoria.Services.Mentoring.Application", "src\Services\Mentoring\Mentoria.Services.Mentoring.Application\Mentoria.Services.Mentoring.Application.csproj", "{3BC46B19-1090-400F-A503-82B406ABCC66}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mentoria.Services.Mentoring.Infraestructure", "src\Services\Mentoring\Mentoria.Services.Mentoring.Infraestructure\Mentoria.Services.Mentoring.Infraestructure.csproj", "{AEAA7F19-D37B-49E0-8004-09572A182246}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mentoria.Services.Mentoring.API", "src\Services\Mentoring\Mentoria.Services.Mentoring.API\Mentoria.Services.Mentoring.API.csproj", "{83337EE8-ADF8-48B3-B5E0-1FC30E796A53}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -97,6 +111,30 @@ Global
 		{D02DA5E4-BBE2-4E37-9CA0-F6A88272DB6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D02DA5E4-BBE2-4E37-9CA0-F6A88272DB6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D02DA5E4-BBE2-4E37-9CA0-F6A88272DB6A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{021C6EB2-EEF7-4458-9193-B18A1D4779A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{021C6EB2-EEF7-4458-9193-B18A1D4779A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{021C6EB2-EEF7-4458-9193-B18A1D4779A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{021C6EB2-EEF7-4458-9193-B18A1D4779A8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C3307765-246A-4EC6-B849-DC1A1A4965A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3307765-246A-4EC6-B849-DC1A1A4965A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3307765-246A-4EC6-B849-DC1A1A4965A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3307765-246A-4EC6-B849-DC1A1A4965A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{34382CF6-8610-467E-B8EB-E00E1CD33DD3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{34382CF6-8610-467E-B8EB-E00E1CD33DD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{34382CF6-8610-467E-B8EB-E00E1CD33DD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{34382CF6-8610-467E-B8EB-E00E1CD33DD3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3BC46B19-1090-400F-A503-82B406ABCC66}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3BC46B19-1090-400F-A503-82B406ABCC66}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3BC46B19-1090-400F-A503-82B406ABCC66}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3BC46B19-1090-400F-A503-82B406ABCC66}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AEAA7F19-D37B-49E0-8004-09572A182246}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AEAA7F19-D37B-49E0-8004-09572A182246}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AEAA7F19-D37B-49E0-8004-09572A182246}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AEAA7F19-D37B-49E0-8004-09572A182246}.Release|Any CPU.Build.0 = Release|Any CPU
+		{83337EE8-ADF8-48B3-B5E0-1FC30E796A53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83337EE8-ADF8-48B3-B5E0-1FC30E796A53}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83337EE8-ADF8-48B3-B5E0-1FC30E796A53}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83337EE8-ADF8-48B3-B5E0-1FC30E796A53}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -120,6 +158,13 @@ Global
 		{1C4003C7-8773-4BC4-9A82-662473B4F492} = {A67B0C24-829E-4CC2-B769-C4F375B190DB}
 		{AABD80D3-1A4D-4250-8A60-748433EDED33} = {A67B0C24-829E-4CC2-B769-C4F375B190DB}
 		{D02DA5E4-BBE2-4E37-9CA0-F6A88272DB6A} = {A67B0C24-829E-4CC2-B769-C4F375B190DB}
+		{021C6EB2-EEF7-4458-9193-B18A1D4779A8} = {E6BAFF17-661B-45A7-99E4-E9EFA388695D}
+		{C3307765-246A-4EC6-B849-DC1A1A4965A1} = {E6BAFF17-661B-45A7-99E4-E9EFA388695D}
+		{62CD510E-2B4B-4943-9931-5BD977FD5AC7} = {5FB98A05-4F45-43D6-94A3-902AD88EB21C}
+		{34382CF6-8610-467E-B8EB-E00E1CD33DD3} = {62CD510E-2B4B-4943-9931-5BD977FD5AC7}
+		{3BC46B19-1090-400F-A503-82B406ABCC66} = {62CD510E-2B4B-4943-9931-5BD977FD5AC7}
+		{AEAA7F19-D37B-49E0-8004-09572A182246} = {62CD510E-2B4B-4943-9931-5BD977FD5AC7}
+		{83337EE8-ADF8-48B3-B5E0-1FC30E796A53} = {62CD510E-2B4B-4943-9931-5BD977FD5AC7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {65B927C3-F553-4044-B4C5-75CC623B267A}

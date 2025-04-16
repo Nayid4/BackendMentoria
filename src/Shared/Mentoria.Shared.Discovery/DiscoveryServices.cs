@@ -5,7 +5,7 @@
         public const string RabbitMQ = "RabbitMQ";  
         public const string Secrets = "SecretManager";
         public const string SqlServer = "SqlServer";
-        public const string MongoDB = "MongoDb";
+        public const string MongoDb = "MongoDb";
         public const string Graylog = "Graylog";
         public const string OpenTelemetry = "OpenTelemetryCollector";
 

@@ -1,12 +1,44 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Mentoria.Shared.Communication.Messages;
+using System.Reflection;
 
 namespace Mentoria.Shared.Communication.Consumer.Handler
 {
-    internal class HandleMessage
+    public interface IHandleMessage
     {
+        Task Handle(IMessage message, CancellationToken cancellationToken = default);
+    }
+
+    public class HandleMessage : IHandleMessage
+    {
+        private readonly IMessageHandlerRegistry _messageHandlerRegistry;
+
+        public HandleMessage(IMessageHandlerRegistry messageHandlerRegistry)
+        {
+            _messageHandlerRegistry = messageHandlerRegistry;
+        }
+
+        public Task Handle(IMessage message, CancellationToken cancellationToken = default)
+        {
+            if (message == null) throw new ArgumentNullException(nameof(message));
+
+            Type messageType = message.GetType();
+            var handlerType = typeof(IMessageHandler<>).MakeGenericType(messageType);
+            List<IMessageHandler> handlers = _messageHandlerRegistry.GetMessageHandlerForType(handlerType, messageType).ToList();
+
+            foreach (IMessageHandler handler in handlers)
+            {
+                Type messageHandlerType = handler.GetType();
+
+                MethodInfo? handle = messageHandlerType.GetMethods()
+                    .Where(methodInfo => methodInfo.Name == nameof(IMessageHandler<object>.Handle))
+                    .FirstOrDefault(info => info.GetParameters()
+                        .Select(parameter => parameter.ParameterType)
+                        .Contains(message.GetType()));
+
+                if (handle != null)
+                    return (Task)handle.Invoke(handler, new object[] { message, cancellationToken })!;
+            }
+            return Task.CompletedTask;
+        }
     }
 }

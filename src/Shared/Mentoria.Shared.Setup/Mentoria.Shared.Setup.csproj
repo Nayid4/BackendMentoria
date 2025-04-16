@@ -12,11 +12,24 @@
     <PackageReference Include="AspNetCore.HealthChecks.UI.InMemory.Storage" Version="9.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.3" />
     <PackageReference Include="Microsoft.OpenApi" Version="1.6.24" />
+    <PackageReference Include="Netmentor.ROP" Version="1.8.0" />
+    <PackageReference Include="Netmentor.ROP.ApiExtensions" Version="1.8.0" />
     <PackageReference Include="OpenTelemetry.Exporter.Console" Version="1.11.2" />
     <PackageReference Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="1.11.2" />
     <PackageReference Include="OpenTelemetry.Extensions.Hosting" Version="1.11.2" />
     <PackageReference Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.11.1" />
     <PackageReference Include="Scrutor" Version="6.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Mentoria.Shared.Communication\Mentoria.Shared.Communication.RabbitMQ\Mentoria.Shared.Communication.RabbitMQ.csproj" />
+    <ProjectReference Include="..\Mentoria.Shared.Communication\Mentoria.Shared.Communication\Mentoria.Shared.Communication.csproj" />
+    <ProjectReference Include="..\Mentoria.Shared.Databases\Mentoria.Shared.Databases.SqlServer\Mentoria.Shared.Databases.SqlServer.csproj" />
+    <ProjectReference Include="..\Mentoria.Shared.Discovery\Mentoria.Shared.Discovery.csproj" />
+    <ProjectReference Include="..\Mentoria.Shared.EventSourcing\Mentoria.Shared.EventSourcing.csproj" />
+    <ProjectReference Include="..\Mentoria.Shared.Logging\Mentoria.Shared.Logging.csproj" />
+    <ProjectReference Include="..\Mentoria.Shared.Secrets\Mentoria.Shared.Secrets.csproj" />
+    <ProjectReference Include="..\Mentoria.Shared.Serialization\Mentoria.Shared.Serialization.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace Mentoria.Shared.Communication.Consumer.Manager
 {
-    internal class IConsumerManager
+    public interface IConsumerManager<TMessage>
     {
+        void RestartExecution();
+        void StopExecution();
+        CancellationToken GetCancellationToken();
     }
 }

@@ -11,7 +11,7 @@ namespace Mentoria.Shared.Discovery
             return services.AddSingleton<IConsulClient, ConsulClient>(provider => new ConsulClient(consulConfig =>
                 {
                     var address = configuration["Discovery:Address"];
-                    consulConfig.Address = new Uri(address);
+                    consulConfig.Address = new Uri(address!);
                 }))
                 .AddSingleton<IServiceDiscovery, ConsulServiceDiscovery>();
         }

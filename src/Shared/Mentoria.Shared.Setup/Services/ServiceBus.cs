@@ -1,10 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Mentoria.Shared.Communication.RabbitMQ;
 
 namespace Mentoria.Shared.Setup.Services
 {
@@ -12,7 +7,7 @@ namespace Mentoria.Shared.Setup.Services
     {
         public static void AddServiceBusIntegrationPublisher(this IServiceCollection serviceCollection, IConfiguration configuration)
         {
-            serviceCollection.AddRabbitMQ(GetRrabitMqSecretCredentials, GetRabbitMQHostName, 
+            serviceCollection.AddRabbitMQ(GetRabbitMqSecretCredentials, GetRabbitMQHostName, 
                 configuration, "IntegrationPublisher");
             serviceCollection.AddRabbitMQPublisher<IntegrationMessage>();
         }
