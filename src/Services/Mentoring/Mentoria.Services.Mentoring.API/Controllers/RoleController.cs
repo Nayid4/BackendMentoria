@@ -1,10 +1,10 @@
 ﻿
 using Mentoria.Services.Mentoring.Application.Roles.Create;
-//using Mentoria.Services.Mentoring.Application.Roles.Delete;
-using Mentoria.Services.Mentoring.Application.Roles.GetAll;/*
+using Mentoria.Services.Mentoring.Application.Roles.Delete;
+using Mentoria.Services.Mentoring.Application.Roles.GetAll;
 using Mentoria.Services.Mentoring.Application.Roles.GetByFilter;
 using Mentoria.Services.Mentoring.Application.Roles.GetById;
-using Mentoria.Services.Mentoring.Application.Roles.Update;*/
+using Mentoria.Services.Mentoring.Application.Roles.Update;
 using Microsoft.AspNetCore.Authorization;
 
 namespace Mentoria.Services.Mentoring.API.Controller
@@ -31,7 +31,7 @@ namespace Mentoria.Services.Mentoring.API.Controller
             );
         }
 
-        /*[HttpGet("{id}")]
+        [HttpGet("{id}")]
         public async Task<IActionResult> ListarPorId(Guid id)
         {
             var resultadosDeListarPorId = await _mediator.Send(new RoleGetByIdQuery(id));
@@ -40,7 +40,7 @@ namespace Mentoria.Services.Mentoring.API.Controller
                 resp => Ok(resp),
                 errores => Problem(errores)
             );
-        }*/
+        }
 
 
         [HttpPost]
@@ -55,7 +55,7 @@ namespace Mentoria.Services.Mentoring.API.Controller
             );
         }
 
-        /*
+        
         [HttpDelete("{id}")]
         public async Task<IActionResult> Eliminar(Guid id)
         {
@@ -97,6 +97,6 @@ namespace Mentoria.Services.Mentoring.API.Controller
                 resp => Ok(resp),
                 errores => Problem(errores)
             );
-        }*/
+        }
     }
 }

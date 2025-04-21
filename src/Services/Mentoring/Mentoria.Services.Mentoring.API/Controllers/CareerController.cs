@@ -1,10 +1,10 @@
 ﻿
 using Mentoria.Services.Mentoring.Application.Careers.Create;
-//using Mentoria.Services.Mentoring.Application.Careers.Delete;
-using Mentoria.Services.Mentoring.Application.Careers.GetAll;/*
+using Mentoria.Services.Mentoring.Application.Careers.Delete;
+using Mentoria.Services.Mentoring.Application.Careers.GetAll;
 using Mentoria.Services.Mentoring.Application.Careers.GetByFilter;
 using Mentoria.Services.Mentoring.Application.Careers.GetById;
-using Mentoria.Services.Mentoring.Application.Careers.Update;*/
+using Mentoria.Services.Mentoring.Application.Careers.Update;
 using Microsoft.AspNetCore.Authorization;
 
 namespace Mentoria.Services.Mentoring.API.Controller
@@ -31,7 +31,7 @@ namespace Mentoria.Services.Mentoring.API.Controller
             );
         }
 
-        /*[HttpGet("{id}")]
+        [HttpGet("{id}")]
         public async Task<IActionResult> ListarPorId(Guid id)
         {
             var resultadosDeListarPorId = await _mediator.Send(new CareerGetByIdQuery(id));
@@ -40,7 +40,7 @@ namespace Mentoria.Services.Mentoring.API.Controller
                 resp => Ok(resp),
                 errores => Problem(errores)
             );
-        }*/
+        }
 
 
         [HttpPost]
@@ -55,7 +55,7 @@ namespace Mentoria.Services.Mentoring.API.Controller
             );
         }
 
-        /*
+        
         [HttpDelete("{id}")]
         public async Task<IActionResult> Eliminar(Guid id)
         {
@@ -97,6 +97,6 @@ namespace Mentoria.Services.Mentoring.API.Controller
                 resp => Ok(resp),
                 errores => Problem(errores)
             );
-        }*/
+        }
     }
 }
