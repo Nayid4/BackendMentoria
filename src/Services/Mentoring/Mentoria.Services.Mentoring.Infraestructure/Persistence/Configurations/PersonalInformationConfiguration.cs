@@ -29,7 +29,7 @@ namespace Mentoria.Services.Mentoring.Infraestructure.Persistence.Configurations
                 .IsRequired();
 
             builder.Property(t => t.Sex)
-                .HasMaxLength(1)
+                .HasMaxLength(10)
                 .IsRequired();
 
             builder.Property(t => t.Phone)

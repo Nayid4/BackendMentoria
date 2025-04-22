@@ -17,11 +17,13 @@ namespace Mentoria.Services.Mentoring.Application.Careers.GetAll
 
         public async Task<ErrorOr<IReadOnlyList<CareerResponse>>> Handle(CareerGetAllQuery request, CancellationToken cancellationToken)
         {
-            return await _careerRepository.GetAll()
+            var listCareer = await _careerRepository.GetAll()
                 .Select(role => new CareerResponse(
                     role.Id.Value,
                     role.Name
-                )).ToListAsync();
+                )).ToListAsync(cancellationToken);
+
+            return listCareer;
         }
     }
 }

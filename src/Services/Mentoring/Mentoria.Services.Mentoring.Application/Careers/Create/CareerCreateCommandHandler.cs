@@ -24,10 +24,12 @@ namespace Mentoria.Services.Mentoring.Application.Careers.Create
                 return Error.Conflict("Career.Found", "El carerra ya esta registrado.");
             }
 
-            var roleResult = new Career(
+            var careerResult = new Career(
                 new IdCareer(Guid.NewGuid()),
                 command.Name
             );
+
+            _careerRepository.Create(careerResult);
 
             await _unitOfWork.SaveChangesAsync(cancellationToken);
 

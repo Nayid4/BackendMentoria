@@ -21,6 +21,7 @@ namespace Mentoria.Services.Mentoring.API.Controller
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public async Task<IActionResult> ListarTodos()
         {
             var resultadosDeListarTodos = await _mediator.Send(new RoleGetAllQuery());

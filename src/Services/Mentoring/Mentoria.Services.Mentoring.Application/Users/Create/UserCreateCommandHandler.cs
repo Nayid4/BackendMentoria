@@ -1,4 +1,5 @@
 ﻿
+using Mentoria.Services.Mentoring.Application.Email;
 using Mentoria.Services.Mentoring.Application.Utils;
 using Mentoria.Services.Mentoring.Domain.AcademicInformations;
 using Mentoria.Services.Mentoring.Domain.Careers;
@@ -13,13 +14,14 @@ namespace Mentoria.Services.Mentoring.Application.Users.Create
     {
         private readonly IUserRepository _userRepository;
         private readonly IPersonalInformationRepository _personalInformationRepository;
-        private readonly Domain.Roles.IRoleRepository _roleRepository;
+        private readonly IRoleRepository _roleRepository;
         private readonly IAcademicInformationRepository _academicInformationRepository;
-        private readonly Domain.Careers.ICareerRepository _careerRepository;
+        private readonly ICareerRepository _careerRepository;
         private readonly IAuthToken _authToken;
+        private readonly IEmailService _emailService;
         private readonly IUnitOfWork _unitOfWork;
 
-        public UserCreateCommandHandler(IUserRepository userRepository, IPersonalInformationRepository personalInformationRepository, Domain.Roles.IRoleRepository roleRepository, IAcademicInformationRepository academicInformationRepository, IUnitOfWork unitOfWork, Domain.Careers.ICareerRepository careerRepository, IAuthToken authToken)
+        public UserCreateCommandHandler(IUserRepository userRepository, IPersonalInformationRepository personalInformationRepository, IRoleRepository roleRepository, IAcademicInformationRepository academicInformationRepository, IUnitOfWork unitOfWork, ICareerRepository careerRepository, IAuthToken authToken, IEmailService emailService)
         {
             _userRepository = userRepository ?? throw new ArgumentNullException(nameof(userRepository));
             _personalInformationRepository = personalInformationRepository ?? throw new ArgumentNullException(nameof(personalInformationRepository));
@@ -28,6 +30,7 @@ namespace Mentoria.Services.Mentoring.Application.Users.Create
             _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
             _careerRepository = careerRepository ?? throw new ArgumentNullException(nameof(careerRepository));
             _authToken = authToken ?? throw new ArgumentNullException(nameof(authToken));
+            _emailService = emailService ?? throw new ArgumentNullException(nameof(emailService));
         }
 
         public async Task<ErrorOr<Unit>> Handle(UserCreateCommand command, CancellationToken cancellationToken)
@@ -84,6 +87,12 @@ namespace Mentoria.Services.Mentoring.Application.Users.Create
             _personalInformationRepository.Create(personalInformation);
             _academicInformationRepository.Create(academicInformationCommand);
             _userRepository.Create(user);
+
+            await _emailService.Send(
+                academicInformationCommand.Email, 
+                "Bienvenido al Sistema de Mentoria!",
+                "Su usuario es: " + user.UserName + " y su contraseña es: " + password
+            );
 
             await _unitOfWork.SaveChangesAsync(cancellationToken);
 
