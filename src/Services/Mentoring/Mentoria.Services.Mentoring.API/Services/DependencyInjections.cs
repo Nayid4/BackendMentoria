@@ -44,7 +44,8 @@ namespace Mentoria.Services.Mentoring.API.Services
                         "http://localhost:4200",
                         "https://localhost:4200",
                         "https://localhost:8500",
-                        "https://localhost:80"
+                        "https://localhost:80",
+                        "https://frontend-mentoria.vercel.app"
                         );
                     policyBuilder.AllowAnyHeader();
                     policyBuilder.AllowAnyMethod();
