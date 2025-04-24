@@ -1,4 +1,5 @@
 ﻿
+using Mentoria.Services.Mentoring.Application.Auth.ForgetPassword;
 using Mentoria.Services.Mentoring.Application.Auth.LoginIn;
 using Mentoria.Services.Mentoring.Application.Auth.RefreshToken;
 using Mentoria.Services.Mentoring.Application.Auth.UserData;
@@ -53,10 +54,10 @@ namespace Mentoria.Services.Mentoring.API.Controller
             );
         }
 
-        /*[HttpPut("restaurar-contrasena/{id}")]
-        public async Task<IActionResult> Actualizar(Guid id, [FromBody] RestaurarContrasenaDeUsuarioCommand comando)
+        [HttpPut("forget-password/{id}")]
+        public async Task<IActionResult> Actualizar(Guid id, [FromBody] ForgetPasswordCommand comando)
         {
-            if (comando.IdUsuario != id)
+            if (comando.Id != id)
             {
                 List<Error> errores = new()
                 {
@@ -72,6 +73,6 @@ namespace Mentoria.Services.Mentoring.API.Controller
                 resp => NoContent(),
                 errores => Problem(errores)
             );
-        }*/
+        }
     }
 }
