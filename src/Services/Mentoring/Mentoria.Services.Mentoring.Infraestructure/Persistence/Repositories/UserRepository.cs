@@ -13,6 +13,7 @@ namespace Mentoria.Services.Mentoring.Infraestructure.Persistence.Repositories
         public IQueryable<User> GetAllUsers()
         {
             return _dbSet
+                .AsNoTracking()
                 .Include(u => u.PersonalInformation)
                 .Include(u => u.AcademicInformation)
                 .Include(u => u.Role)
@@ -23,6 +24,7 @@ namespace Mentoria.Services.Mentoring.Infraestructure.Persistence.Repositories
         public async Task<User?> GetByIdUser(IdUser id)
         {
             return await _dbSet
+                .AsNoTracking()
                 .Include(u => u.PersonalInformation)
                 .Include(u => u.AcademicInformation)
                 .Include(u => u.Role)
@@ -36,7 +38,12 @@ namespace Mentoria.Services.Mentoring.Infraestructure.Persistence.Repositories
 
         public async Task<User?> LoginIn(string userName, string password)
         {
-            return await _dbSet.FirstOrDefaultAsync(x => x.UserName == userName && x.Password == password);
+            return await _dbSet
+                .AsNoTracking()
+                .Include(u => u.PersonalInformation)
+                .Include(u => u.AcademicInformation)
+                .Include(u => u.Role)
+                .FirstOrDefaultAsync(x => x.UserName == userName && x.Password == password);
         }
     }
 }

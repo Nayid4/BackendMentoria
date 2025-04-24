@@ -30,12 +30,17 @@ namespace Mentoria.Services.Mentoring.Domain.Users
             Password = password ?? throw new ArgumentNullException(nameof(password));
         }
 
-        public void Update(IdPersonalInformation idPersonalInformation, IdRole idRole, IdAcademicInformation idAcademicInformation, string userName, string password) 
+        public void Update(IdPersonalInformation idPersonalInformation, IdRole idRole, IdAcademicInformation idAcademicInformation, string userName) 
         {
             IdPersonalInformation = idPersonalInformation ?? throw new ArgumentNullException(nameof(idPersonalInformation));
             IdAcademicInformation = idAcademicInformation ?? throw new ArgumentNullException(nameof(idAcademicInformation));
             IdRole = idRole ?? throw new ArgumentNullException(nameof(idRole));
             UserName = userName ?? throw new ArgumentNullException(nameof(userName));
+            UpdateAt = DateTime.Now;
+        }
+
+        public void UpdatePassword(string password)
+        {
             Password = password ?? throw new ArgumentNullException(nameof(password));
             UpdateAt = DateTime.Now;
         }

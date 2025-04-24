@@ -11,6 +11,8 @@ using Mentoria.Services.Mentoring.Domain.Roles;
 using Mentoria.Services.Mentoring.Domain.Careers;
 using Mentoria.Services.Mentoring.Domain.PersonalInformations;
 using Mentoria.Services.Mentoring.Domain.AcademicInformations;
+using Mentoria.Services.Mentoring.Application.Email;
+using Mentoria.Services.Mentoring.Infraestructure.Persistence.Emails;
 
 namespace Mentoria.Services.Mentoring.Infraestructure.Services
 {
@@ -50,6 +52,18 @@ namespace Mentoria.Services.Mentoring.Infraestructure.Services
 
             // Registrar el servicio con la ruta
             services.AddSingleton<IBlobService>(new LocalBlobServices(rutaWwwroot));
+            
+            services.AddTransient<IEmailService, EmailService>(sp =>
+            {
+                var emailConfig = configuracion.GetSection("EmailConfiguration");
+                var emailService = new EmailService(
+                    emailConfig["From"]!,
+                    emailConfig["Password"]!,
+                    emailConfig["SmtpServer"]!,
+                    int.Parse(emailConfig["Port"]!)
+                );
+                return emailService;
+            });
 
             return services;
         }

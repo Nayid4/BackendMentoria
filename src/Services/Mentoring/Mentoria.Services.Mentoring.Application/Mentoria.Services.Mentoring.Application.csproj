@@ -21,8 +21,4 @@
     <ProjectReference Include="..\Mentoria.Services.Mentoring.Domain\Mentoria.Services.Mentoring.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Auth\ForgetPassword\" />
-  </ItemGroup>
-
 </Project>

@@ -75,7 +75,7 @@ namespace Mentoria.Services.Mentoring.Application.Utils
             {
                 new Claim(ClaimTypes.NameIdentifier, user.Id.Value.ToString()),
                 new Claim(ClaimTypes.Name, user.PersonalInformation!.Name + ' ' + user.PersonalInformation.LastName),
-                new Claim(ClaimTypes.Role, user.Role!.Name.ToString()),
+                new Claim(ClaimTypes.Role, user.Role!.Name),
                 new Claim(ClaimTypes.GivenName, user.UserName),
             };
 

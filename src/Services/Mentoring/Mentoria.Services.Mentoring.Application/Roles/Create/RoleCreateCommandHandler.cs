@@ -29,6 +29,8 @@ namespace Mentoria.Services.Mentoring.Application.Roles.Create
                 command.Name
             );
 
+            _roleRepository.Create(roleResult);
+
             await _unitOfWork.SaveChangesAsync(cancellationToken);
 
             return Unit.Value;

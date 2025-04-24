@@ -76,14 +76,12 @@ namespace Mentoria.Services.Mentoring.Application.Users.Update
                 command.AcademicInformation.Expectative
             );
 
-            string password = _authToken.GeneratePass();
 
             user.Update(
                 user.PersonalInformation.Id,
                 role.Id,
                 user.AcademicInformation.Id,
-                command.AcademicInformation.Code,
-                _authToken.EncryptSHA256(password)
+                command.AcademicInformation.Code
             );
 
             _personalInformationRepository.Create(user.PersonalInformation);

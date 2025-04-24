@@ -42,7 +42,7 @@ namespace Mentoria.Services.Mentoring.Application.Users.GetAll
                         user.AcademicInformation.Expectative
                     ),
                     user.UserName
-            )).ToListAsync();
+            )).ToListAsync(cancellationToken);
 
             return users;
 
