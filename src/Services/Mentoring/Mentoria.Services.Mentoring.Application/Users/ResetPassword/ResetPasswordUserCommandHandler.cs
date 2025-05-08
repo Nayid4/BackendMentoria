@@ -1,25 +1,26 @@
 ﻿
+
 using Mentoria.Services.Mentoring.Application.Utils;
 using Mentoria.Services.Mentoring.Domain.Primitives;
 using Mentoria.Services.Mentoring.Domain.Users;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
-namespace Mentoria.Services.Mentoring.Application.Auth.ForgetPassword
+namespace Mentoria.Services.Mentoring.Application.Users.ResetPassword
 {
-    public sealed class ForgetPasswordCommandHandler : IRequestHandler<ForgetPasswordCommand, ErrorOr<Unit>>
+    public sealed class ResetPasswordUserCommandHandler : IRequestHandler<ResetPasswordUserCommand, ErrorOr<Unit>>
     {
+
         private readonly IUserRepository _userRepository;
         private readonly IAuthToken _authToken;
         private readonly IUnitOfWork _unitOfWork;
 
-        public ForgetPasswordCommandHandler(IUserRepository userRepository, IAuthToken authToken, IUnitOfWork unitOfWork)
+        public ResetPasswordUserCommandHandler(IUserRepository userRepository, IAuthToken authToken, IUnitOfWork unitOfWork)
         {
             _userRepository = userRepository ?? throw new ArgumentNullException(nameof(userRepository));
             _authToken = authToken ?? throw new ArgumentNullException(nameof(authToken));
             _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
         }
 
-        public async Task<ErrorOr<Unit>> Handle(ForgetPasswordCommand command, CancellationToken cancellationToken)
+        public async Task<ErrorOr<Unit>> Handle(ResetPasswordUserCommand command, CancellationToken cancellationToken)
         {
             if (await _userRepository.GetByIdUser(new IdUser(command.Id)) is not User user)
             {
@@ -37,8 +38,6 @@ namespace Mentoria.Services.Mentoring.Application.Auth.ForgetPassword
             }
 
             user.UpdatePassword(_authToken.EncryptSHA256(command.Password));
-
-            _userRepository.Update(user);
 
             await _unitOfWork.SaveChangesAsync(cancellationToken);
 
