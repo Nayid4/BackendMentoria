@@ -1,6 +1,7 @@
 ﻿
 using Mentoria.Services.Mentoring.Application.Common.DataList;
 using Mentoria.Services.Mentoring.Application.Users.Common;
+using Mentoria.Services.Mentoring.Domain.Roles;
 using Mentoria.Services.Mentoring.Domain.Users;
 using System.Linq.Expressions;
 
@@ -26,8 +27,20 @@ namespace Mentoria.Services.Mentoring.Application.Users.GetByFilter
                     at.PersonalInformation!.LastName.ToLower().Contains(request.SearchTerm.ToLower()) ||
                     at.Role!.Name.ToLower().Contains(request.SearchTerm.ToLower()) ||
                     at.UserName.ToLower().Contains(request.SearchTerm.ToLower()) ||
-                    at.Role!.Name.ToLower().Contains(request.SearchTerm.ToLower())
+                    at.Role!.Name.ToLower().Contains(request.SearchTerm.ToLower()) ||
+                    at.State.ToLower().Contains(request.SearchTerm.ToLower())
                 );
+            }
+
+            if (!string.IsNullOrWhiteSpace(request.State))
+            {
+                users = users.Where(at => at.State.ToLower().Contains(request.State.ToLower()));
+            }
+
+            if (request.RoleId != Guid.Empty && request.RoleId is not null)
+            {
+                var idRole = new IdRole(request.RoleId ?? Guid.Empty);
+                users = users.Where(p => p.IdRole == idRole);
             }
 
             if (request.OrderList?.ToLower() == "desc")
@@ -65,7 +78,8 @@ namespace Mentoria.Services.Mentoring.Application.Users.GetByFilter
                         user.AcademicInformation.Cicle,
                         user.AcademicInformation.Expectative
                     ),
-                    user.UserName
+                    user.UserName,
+                    user.State
             ));
 
             var ListUser = await DataList<UserResponse>.CreateAsync(

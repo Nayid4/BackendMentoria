@@ -81,7 +81,8 @@ namespace Mentoria.Services.Mentoring.Application.Users.Update
                 user.PersonalInformation.Id,
                 role.Id,
                 user.AcademicInformation.Id,
-                command.AcademicInformation.Code
+                command.UserName,
+                command.State
             );
 
             _personalInformationRepository.Create(user.PersonalInformation);

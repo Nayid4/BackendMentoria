@@ -39,6 +39,10 @@ namespace Mentoria.Services.Mentoring.Infraestructure.Persistence.Configurations
                 .HasMaxLength(255)
                 .IsRequired();
 
+            builder.Property(t => t.State)
+                .HasMaxLength(50)
+                .IsRequired();
+
             builder.HasOne(t => t.PersonalInformation)
                 .WithMany()
                 .HasForeignKey(t => t.IdPersonalInformation)

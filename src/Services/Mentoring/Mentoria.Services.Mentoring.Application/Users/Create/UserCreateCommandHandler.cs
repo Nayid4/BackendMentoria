@@ -81,7 +81,8 @@ namespace Mentoria.Services.Mentoring.Application.Users.Create
                 role.Id,
                 academicInformationCommand.Id,
                 command.AcademicInformation.Code,
-                _authToken.EncryptSHA256(password)
+                _authToken.EncryptSHA256(password),
+                "Pendiente"
             );
 
             _personalInformationRepository.Create(personalInformation);
