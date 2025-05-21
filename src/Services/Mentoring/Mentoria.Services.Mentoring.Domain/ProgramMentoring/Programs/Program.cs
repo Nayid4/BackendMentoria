@@ -2,6 +2,7 @@
 using Mentoria.Services.Mentoring.Domain.Generics;
 using Mentoria.Services.Mentoring.Domain.ProgramMentoring.ProgramActivities;
 using Mentoria.Services.Mentoring.Domain.ProgramMentoring.ProgramUsers;
+using Mentoria.Services.Mentoring.Domain.Users;
 
 namespace Mentoria.Services.Mentoring.Domain.ProgramMentoring.Programs
 {
@@ -12,6 +13,9 @@ namespace Mentoria.Services.Mentoring.Domain.ProgramMentoring.Programs
         public string Type { get; private set; } = string.Empty;
         public string Description { get; private set; } = string.Empty;
         public int MaximumNumberOfParticipants { get; private set; } = 0;
+
+        public Career? Career { get; private set; } = default!;
+
 
         private HashSet<ProgramUser> _users = new HashSet<ProgramUser>();
         public IReadOnlyCollection<ProgramUser> Users => _users.ToList();
@@ -46,10 +50,10 @@ namespace Mentoria.Services.Mentoring.Domain.ProgramMentoring.Programs
             UpdateAt = DateTime.Now;
         }
 
-        public ProgramUser GetUserById(IdProgramUser idProgramUser)
+        public ProgramUser? GetUserById(IdUser idProgramUser)
         {
             if (idProgramUser == null) throw new ArgumentNullException(nameof(idProgramUser));
-            return _users.FirstOrDefault(x => x.Id == idProgramUser) ?? throw new KeyNotFoundException("User not found.");
+            return _users.FirstOrDefault(x => x.User!.Id == idProgramUser) ?? null;
         }
 
         public void RemoveUser(ProgramUser user)
@@ -73,10 +77,10 @@ namespace Mentoria.Services.Mentoring.Domain.ProgramMentoring.Programs
             UpdateAt = DateTime.Now;
         }
 
-        public ProgramActivity GetActivityById(IdProgramActivity idProgramActivity)
+        public ProgramActivity? GetActivityById(IdProgramActivity idProgramActivity)
         {
             if (idProgramActivity == null) throw new ArgumentNullException(nameof(idProgramActivity));
-            return _activities.FirstOrDefault(x => x.Id == idProgramActivity) ?? throw new KeyNotFoundException("Activity not found.");
+            return _activities.FirstOrDefault(x => x.Id == idProgramActivity) ?? null;
         }
 
         public void RemoveActivity(ProgramActivity activity)

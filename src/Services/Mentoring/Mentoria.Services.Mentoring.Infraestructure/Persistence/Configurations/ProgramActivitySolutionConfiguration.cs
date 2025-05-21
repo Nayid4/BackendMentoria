@@ -1,6 +1,7 @@
 ﻿
 using Mentoria.Services.Mentoring.Domain.ProgramMentoring.ProgramActivities;
 using Mentoria.Services.Mentoring.Domain.ProgramMentoring.ProgramActivitiesSolutions;
+using Mentoria.Services.Mentoring.Domain.Users;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Mentoria.Services.Mentoring.Infraestructure.Persistence.Configurations
@@ -18,6 +19,11 @@ namespace Mentoria.Services.Mentoring.Infraestructure.Persistence.Configurations
             builder.Property(t => t.IdProgramActivity).HasConversion(
                 pel => pel.Value,
                 valor => new IdProgramActivity(valor))
+                .IsRequired();
+
+            builder.Property(t => t.IdUser).HasConversion(
+                pel => pel.Value,
+                valor => new IdUser(valor))
                 .IsRequired();
 
             builder.Property(t => t.Calification)
