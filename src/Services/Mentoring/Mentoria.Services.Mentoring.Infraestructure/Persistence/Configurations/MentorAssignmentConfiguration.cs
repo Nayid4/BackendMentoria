@@ -25,6 +25,17 @@ namespace Mentoria.Services.Mentoring.Infraestructure.Persistence.Configurations
                 valor => new IdUser(valor))
                 .IsRequired();
 
+            builder.HasOne(t => t.User)
+                .WithMany()
+                .HasForeignKey(t => t.IdUser)
+                .OnDelete(DeleteBehavior.NoAction); // o .NoAction()
+
+            builder.HasOne(t => t.Mentor)
+                .WithMany()
+                .HasForeignKey(t => t.IdMentor)
+                .OnDelete(DeleteBehavior.NoAction); // o .NoAction()
+
+
             builder.Property(t => t.CreatedAt)
                 .HasDefaultValueSql("CURRENT_TIMESTAMP")
                 .ValueGeneratedOnAdd()

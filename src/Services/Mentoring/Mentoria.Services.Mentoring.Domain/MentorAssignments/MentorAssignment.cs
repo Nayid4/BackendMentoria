@@ -6,7 +6,6 @@ namespace Mentoria.Services.Mentoring.Domain.MentorAssignments
 {
     public sealed class MentorAssignment : EntityGeneric<IdMentorAssignment>
     {
-        public IdMentorAssignment IdMentorAssignment { get; private set; } = default!;
         public IdUser IdUser { get; private set; } = default!;
         public IdUser IdMentor { get; private set; } = default!;
 

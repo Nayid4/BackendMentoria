@@ -6,6 +6,6 @@ namespace Mentoria.Services.Mentoring.Application.ProgramMentoring.ProgramActivi
         Guid IdProgramActivity,
         Guid IdUser,
         Guid IdFileSolution,
-        decimal Calification
+        double Calification
     );
 }

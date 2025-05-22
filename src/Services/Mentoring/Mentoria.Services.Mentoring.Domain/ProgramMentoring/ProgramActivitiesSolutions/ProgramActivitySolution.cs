@@ -9,14 +9,14 @@ namespace Mentoria.Services.Mentoring.Domain.ProgramMentoring.ProgramActivitiesS
         public IdProgramActivity IdProgramActivity { get; private set; } = default!;
         public IdUser IdUser { get; private set; } = default!;
         public Guid IdFileSolution { get; private set; } = default!;
-        public decimal Calification { get; private set; }
+        public double Calification { get; private set; }
 
         public ProgramActivity? ProgramActivity { get; private set; } = default!;
         public User? User { get; private set; } = default!;
 
         public ProgramActivitySolution() { }
 
-        public ProgramActivitySolution(IdProgramActivitySolution id, IdProgramActivity idProgramActivity, IdUser idUser, Guid idFileSolution, decimal calification)
+        public ProgramActivitySolution(IdProgramActivitySolution id, IdProgramActivity idProgramActivity, IdUser idUser, Guid idFileSolution, double calification)
             : base(id)
         {
             IdProgramActivity = idProgramActivity ?? throw new ArgumentNullException(nameof(idProgramActivity));
@@ -25,7 +25,7 @@ namespace Mentoria.Services.Mentoring.Domain.ProgramMentoring.ProgramActivitiesS
             Calification = calification;
         }
 
-        public void Update(IdProgramActivity idProgramActivity, IdUser idUser, Guid idFileSolution, decimal calification)
+        public void Update(IdProgramActivity idProgramActivity, IdUser idUser, Guid idFileSolution, double calification)
         {
             IdProgramActivity = idProgramActivity ?? throw new ArgumentNullException(nameof(idProgramActivity));
             IdUser = idUser ?? throw new ArgumentNullException(nameof(idUser));
@@ -34,7 +34,7 @@ namespace Mentoria.Services.Mentoring.Domain.ProgramMentoring.ProgramActivitiesS
             UpdateAt = DateTime.Now;
         }
 
-        public void UpdateCalification(decimal calification)
+        public void UpdateCalification(double calification)
         {
             Calification = calification;
             UpdateAt = DateTime.Now;

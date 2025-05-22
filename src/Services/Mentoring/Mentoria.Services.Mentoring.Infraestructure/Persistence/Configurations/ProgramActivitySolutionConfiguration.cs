@@ -27,7 +27,6 @@ namespace Mentoria.Services.Mentoring.Infraestructure.Persistence.Configurations
                 .IsRequired();
 
             builder.Property(t => t.Calification)
-                .HasMaxLength(50)
                 .IsRequired();
 
             builder.Property(t => t.CreatedAt)

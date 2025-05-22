@@ -1,5 +1,5 @@
 ﻿
 namespace Mentoria.Services.Mentoring.Application.ProgramMentoring.ProgramActivitiesSolutions.UpdateCalification
 {
-    public record ActivitySolutionUpdateCalificationCommand(Guid IdProgramActivity, Guid IdProgramActivitySolution, decimal Calification) : IRequest<ErrorOr<Unit>>;
+    public record ActivitySolutionUpdateCalificationCommand(Guid IdProgramActivity, Guid IdProgramActivitySolution, double Calification) : IRequest<ErrorOr<Unit>>;
 }

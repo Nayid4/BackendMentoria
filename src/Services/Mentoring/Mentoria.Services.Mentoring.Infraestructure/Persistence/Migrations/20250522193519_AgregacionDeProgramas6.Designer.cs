@@ -4,6 +4,7 @@ using Mentoria.Services.Mentoring.Infraestructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Mentoria.Services.Mentoring.Infraestructure.Persistence.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250522193519_AgregacionDeProgramas6")]
+    partial class AgregacionDeProgramas6
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -102,16 +105,22 @@ namespace Mentoria.Services.Mentoring.Infraestructure.Persistence.Migrations
                     b.Property<Guid>("IdUser")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid?>("MentorId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<DateTime>("UpdateAt")
                         .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("datetime2")
                         .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
+                    b.Property<Guid?>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("IdMentor");
+                    b.HasIndex("MentorId");
 
-                    b.HasIndex("IdUser");
+                    b.HasIndex("UserId");
 
                     b.ToTable("MentorAssignment");
                 });
@@ -414,15 +423,11 @@ namespace Mentoria.Services.Mentoring.Infraestructure.Persistence.Migrations
                 {
                     b.HasOne("Mentoria.Services.Mentoring.Domain.Users.User", "Mentor")
                         .WithMany()
-                        .HasForeignKey("IdMentor")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
+                        .HasForeignKey("MentorId");
 
                     b.HasOne("Mentoria.Services.Mentoring.Domain.Users.User", "User")
                         .WithMany()
-                        .HasForeignKey("IdUser")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
+                        .HasForeignKey("UserId");
 
                     b.Navigation("Mentor");
 
