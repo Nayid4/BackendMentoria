@@ -1,6 +1,7 @@
 ﻿using Mentoria.Services.Mentoring.Domain.Generics;
 using Mentoria.Services.Mentoring.Domain.ProgramMentoring.ProgramActivitiesSolutions;
 using Mentoria.Services.Mentoring.Domain.ProgramMentoring.Programs;
+using Mentoria.Services.Mentoring.Domain.Users;
 
 namespace Mentoria.Services.Mentoring.Domain.ProgramMentoring.ProgramActivities
 {
@@ -54,6 +55,11 @@ namespace Mentoria.Services.Mentoring.Domain.ProgramMentoring.ProgramActivities
         public ProgramActivitySolution GetProgramActivitySolutionById(IdProgramActivitySolution idProgramActivitySolution)
         {
             return _programActivitySolutions.FirstOrDefault(p => p.Id == idProgramActivitySolution) ?? throw new ArgumentNullException(nameof(idProgramActivitySolution));
+        }
+
+        public ProgramActivitySolution GetProgramActivitySolutionByUserId(IdUser idUser)
+        {
+            return _programActivitySolutions.FirstOrDefault(p => p.IdUser == idUser) ?? throw new ArgumentNullException(nameof(idUser));
         }
 
         public void UpdateProgramActivitySolution(ProgramActivitySolution programActivitySolution)
