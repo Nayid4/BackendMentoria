@@ -6,6 +6,8 @@ namespace Mentoria.Services.Mentoring.Application.Users.GetByFilter
 {
     public record UserGetByFilterQuery(
         string? SearchTerm,
+        Guid? RoleId,
+        string? State,
         string? OrderColumn,
         string? OrderList,
         int Page,

@@ -86,6 +86,36 @@ namespace Mentoria.Services.Mentoring.Infraestructure.Persistence.Migrations
                     b.ToTable("Career");
                 });
 
+            modelBuilder.Entity("Mentoria.Services.Mentoring.Domain.MentorAssignments.MentorAssignment", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP");
+
+                    b.Property<Guid>("IdMentor")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("IdUser")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("UpdateAt")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("IdMentor");
+
+                    b.HasIndex("IdUser");
+
+                    b.ToTable("MentorAssignment");
+                });
+
             modelBuilder.Entity("Mentoria.Services.Mentoring.Domain.PersonalInformations.PersonalInformation", b =>
                 {
                     b.Property<Guid>("Id")
@@ -125,6 +155,183 @@ namespace Mentoria.Services.Mentoring.Infraestructure.Persistence.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("PersonalInformation");
+                });
+
+            modelBuilder.Entity("Mentoria.Services.Mentoring.Domain.ProgramMentoring.ProgramActivities.ProgramActivity", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<DateTime>("EndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("IdProgram")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<Guid?>("ProgramId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("State")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<DateTime>("UpdateAt")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("IdProgram");
+
+                    b.HasIndex("ProgramId");
+
+                    b.ToTable("ProgramActivity");
+                });
+
+            modelBuilder.Entity("Mentoria.Services.Mentoring.Domain.ProgramMentoring.ProgramActivitiesSolutions.ProgramActivitySolution", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<double>("Calification")
+                        .HasColumnType("float");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP");
+
+                    b.Property<Guid>("IdFileSolution")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("IdProgramActivity")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("IdUser")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("ProgramActivityId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("UpdateAt")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP");
+
+                    b.Property<Guid?>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("IdProgramActivity");
+
+                    b.HasIndex("ProgramActivityId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("ProgramActivitySolution");
+                });
+
+            modelBuilder.Entity("Mentoria.Services.Mentoring.Domain.ProgramMentoring.ProgramUsers.ProgramUser", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP");
+
+                    b.Property<Guid>("IdProgram")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("IdUser")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("ProgramId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("UpdateAt")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP");
+
+                    b.Property<Guid?>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("IdProgram");
+
+                    b.HasIndex("ProgramId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("ProgramUser");
+                });
+
+            modelBuilder.Entity("Mentoria.Services.Mentoring.Domain.ProgramMentoring.Programs.Program", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<Guid>("IdCareer")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("MaximumNumberOfParticipants")
+                        .HasMaxLength(50)
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("Type")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<DateTime>("UpdateAt")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("IdCareer");
+
+                    b.ToTable("Program");
                 });
 
             modelBuilder.Entity("Mentoria.Services.Mentoring.Domain.Roles.Role", b =>
@@ -170,6 +377,11 @@ namespace Mentoria.Services.Mentoring.Infraestructure.Persistence.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 
+                    b.Property<string>("State")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
                     b.Property<DateTime>("UpdateAt")
                         .HasColumnType("datetime2");
 
@@ -194,6 +406,93 @@ namespace Mentoria.Services.Mentoring.Infraestructure.Persistence.Migrations
                     b.HasOne("Mentoria.Services.Mentoring.Domain.Careers.Career", "Career")
                         .WithMany()
                         .HasForeignKey("CareerId");
+
+                    b.Navigation("Career");
+                });
+
+            modelBuilder.Entity("Mentoria.Services.Mentoring.Domain.MentorAssignments.MentorAssignment", b =>
+                {
+                    b.HasOne("Mentoria.Services.Mentoring.Domain.Users.User", "Mentor")
+                        .WithMany()
+                        .HasForeignKey("IdMentor")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("Mentoria.Services.Mentoring.Domain.Users.User", "User")
+                        .WithMany()
+                        .HasForeignKey("IdUser")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("Mentor");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Mentoria.Services.Mentoring.Domain.ProgramMentoring.ProgramActivities.ProgramActivity", b =>
+                {
+                    b.HasOne("Mentoria.Services.Mentoring.Domain.ProgramMentoring.Programs.Program", null)
+                        .WithMany("Activities")
+                        .HasForeignKey("IdProgram")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Mentoria.Services.Mentoring.Domain.ProgramMentoring.Programs.Program", "Program")
+                        .WithMany()
+                        .HasForeignKey("ProgramId");
+
+                    b.Navigation("Program");
+                });
+
+            modelBuilder.Entity("Mentoria.Services.Mentoring.Domain.ProgramMentoring.ProgramActivitiesSolutions.ProgramActivitySolution", b =>
+                {
+                    b.HasOne("Mentoria.Services.Mentoring.Domain.ProgramMentoring.ProgramActivities.ProgramActivity", null)
+                        .WithMany("ProgramActivitySolutions")
+                        .HasForeignKey("IdProgramActivity")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Mentoria.Services.Mentoring.Domain.ProgramMentoring.ProgramActivities.ProgramActivity", "ProgramActivity")
+                        .WithMany()
+                        .HasForeignKey("ProgramActivityId");
+
+                    b.HasOne("Mentoria.Services.Mentoring.Domain.Users.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("ProgramActivity");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Mentoria.Services.Mentoring.Domain.ProgramMentoring.ProgramUsers.ProgramUser", b =>
+                {
+                    b.HasOne("Mentoria.Services.Mentoring.Domain.ProgramMentoring.Programs.Program", null)
+                        .WithMany("Users")
+                        .HasForeignKey("IdProgram")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Mentoria.Services.Mentoring.Domain.ProgramMentoring.Programs.Program", "Program")
+                        .WithMany()
+                        .HasForeignKey("ProgramId");
+
+                    b.HasOne("Mentoria.Services.Mentoring.Domain.Users.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("Program");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Mentoria.Services.Mentoring.Domain.ProgramMentoring.Programs.Program", b =>
+                {
+                    b.HasOne("Mentoria.Services.Mentoring.Domain.Careers.Career", "Career")
+                        .WithMany()
+                        .HasForeignKey("IdCareer")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Career");
                 });
@@ -223,6 +522,18 @@ namespace Mentoria.Services.Mentoring.Infraestructure.Persistence.Migrations
                     b.Navigation("PersonalInformation");
 
                     b.Navigation("Role");
+                });
+
+            modelBuilder.Entity("Mentoria.Services.Mentoring.Domain.ProgramMentoring.ProgramActivities.ProgramActivity", b =>
+                {
+                    b.Navigation("ProgramActivitySolutions");
+                });
+
+            modelBuilder.Entity("Mentoria.Services.Mentoring.Domain.ProgramMentoring.Programs.Program", b =>
+                {
+                    b.Navigation("Activities");
+
+                    b.Navigation("Users");
                 });
 #pragma warning restore 612, 618
         }

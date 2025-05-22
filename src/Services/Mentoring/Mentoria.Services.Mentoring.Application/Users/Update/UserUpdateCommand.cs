@@ -6,6 +6,8 @@ namespace Mentoria.Services.Mentoring.Application.Users.Update
         Guid Id,
         PersonalInformationCommand PersonalInformation,
         RoleCommand Role,
-        AcademicInformationCommand AcademicInformation
+        AcademicInformationCommand AcademicInformation,
+        string UserName,
+        string State
     ) : IRequest<ErrorOr<Unit>>;
 }

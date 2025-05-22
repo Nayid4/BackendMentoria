@@ -26,6 +26,11 @@ namespace Mentoria.Services.Mentoring.Application.Auth.LoginIn
                 return Error.NotFound("Autenticacion.NoEncontrado", "Usuario o Contraseña incorrectos.");
             }
 
+            if(user.State.Equals("Pendiente"))
+            {
+                return Error.Conflict("Autenticacion.Conflict", "El usuario se encuentra inactivo.");
+            }
+
             var respuesta = new LoginInResponse(
                 _authToken.GenerateJWT(user, 1),
                 _authToken.GenerateJWT(user, 2)

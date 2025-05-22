@@ -6,7 +6,8 @@ namespace Mentoria.Services.Mentoring.Application.Users.Common
         PersonalInformationResponse PersonalInformation,
         RoleResponse Role,
         AcademicInformationResponse AcademicInformation,
-        string UserName
+        string UserName,
+        string State
     );
 
     public record RoleResponse(

@@ -13,6 +13,9 @@ using Mentoria.Services.Mentoring.Domain.PersonalInformations;
 using Mentoria.Services.Mentoring.Domain.AcademicInformations;
 using Mentoria.Services.Mentoring.Application.Email;
 using Mentoria.Services.Mentoring.Infraestructure.Persistence.Emails;
+using Mentoria.Services.Mentoring.Domain.MentorAssignments;
+using Mentoria.Services.Mentoring.Domain.ProgramMentoring.Programs;
+using Mentoria.Services.Mentoring.Domain.ProgramMentoring.ProgramActivities;
 
 namespace Mentoria.Services.Mentoring.Infraestructure.Services
 {
@@ -46,6 +49,9 @@ namespace Mentoria.Services.Mentoring.Infraestructure.Services
             services.AddScoped<ICareerRepository, CareerRepository>();
             services.AddScoped<IPersonalInformationRepository, PersonalInformationRepository>();
             services.AddScoped<IAcademicInformationRepository, AcademicInformationRepository>();
+            services.AddScoped<IMentorAssignmentRepository, MentorAssignmentRepository>();
+            services.AddScoped<IProgramRepository, ProgramRepository>();
+            services.AddScoped<IProgramActivityRepository, ProgramActivityRepository>();
 
             // Calcular la ruta completa de wwwroot
             var rutaWwwroot = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "documentos");

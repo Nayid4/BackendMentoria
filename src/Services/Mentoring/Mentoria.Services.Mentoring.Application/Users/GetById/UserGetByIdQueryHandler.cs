@@ -45,7 +45,8 @@ namespace Mentoria.Services.Mentoring.Application.Users.GetById
                         user.AcademicInformation.Cicle,
                         user.AcademicInformation.Expectative
                     ),
-                    user.UserName
+                    user.UserName,
+                    user.State
             );
 
             return userResult;

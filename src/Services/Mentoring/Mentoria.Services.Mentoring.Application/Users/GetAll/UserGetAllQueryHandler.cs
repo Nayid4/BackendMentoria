@@ -41,7 +41,8 @@ namespace Mentoria.Services.Mentoring.Application.Users.GetAll
                         user.AcademicInformation.Cicle,
                         user.AcademicInformation.Expectative
                     ),
-                    user.UserName
+                    user.UserName,
+                    user.State
             )).ToListAsync(cancellationToken);
 
             return users;

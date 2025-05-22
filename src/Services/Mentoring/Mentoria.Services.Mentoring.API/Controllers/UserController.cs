@@ -1,4 +1,5 @@
 ﻿
+using Mentoria.Services.Mentoring.Application.Users.ChangeState;
 using Mentoria.Services.Mentoring.Application.Users.Create;
 using Mentoria.Services.Mentoring.Application.Users.Delete;
 using Mentoria.Services.Mentoring.Application.Users.GetAll;
@@ -69,6 +70,27 @@ namespace Mentoria.Services.Mentoring.API.Controller
 
         [HttpPut("{id}")]
         public async Task<IActionResult> Actualizar(Guid id, [FromBody] UserUpdateCommand comando)
+        {
+            if (comando.Id != id)
+            {
+                List<Error> errores = new()
+                {
+                    Error.Validation("Usuario.ActualizacionInvalida","El Id de la consulta no es igual al que esta en la solicitud.")
+                };
+
+                return Problem(errores);
+            }
+
+            var resultadoDeActualizarListaTarea = await _mediator.Send(comando);
+
+            return resultadoDeActualizarListaTarea.Match(
+                resp => NoContent(),
+                errores => Problem(errores)
+            );
+        }
+
+        [HttpPut("change-state/{id}")]
+        public async Task<IActionResult> CambiarEstado(Guid id, [FromBody] UserChangeStateCommand comando)
         {
             if (comando.Id != id)
             {
