@@ -26,6 +26,8 @@ namespace Mentoria.Services.Mentoring.Application.Users.ChangeState
             }
 
             user.ChangeState(command.State);
+
+            _userRepository.Update(user);
             await _unitOfWork.SaveChangesAsync(cancellationToken);
             return Unit.Value;
         }

@@ -17,7 +17,12 @@ namespace Mentoria.Services.Mentoring.Application.Users.GetAll
         public async Task<ErrorOr<IReadOnlyList<UserResponse>>> Handle(UserGetAllQuery request, CancellationToken cancellationToken)
         {
             var users = await _userRepository.GetAllUsers()
+                .Include(u => u.PersonalInformation)
+                .Include(u => u.Role)
+                .Include(u => u.AcademicInformation)
+                    .ThenInclude(u => u.Career)
                 .Select(user => new UserResponse(
+                    user.Id.Value,
                     new PersonalInformationResponse(
                         user.PersonalInformation!.Id.Value,
                         user.PersonalInformation.DNI,
@@ -34,15 +39,17 @@ namespace Mentoria.Services.Mentoring.Application.Users.GetAll
                         user.AcademicInformation!.Id.Value,
                         user.AcademicInformation.Code,
                         user.AcademicInformation.Email,
-                        new CareerResponse(
-                            user.AcademicInformation.Career!.Id.Value,
-                            user.AcademicInformation.Career.Name
-                        ),
+                        user.AcademicInformation.Career != null
+                            ? new CareerResponse(
+                                user.AcademicInformation.Career.Id.Value,
+                                user.AcademicInformation.Career.Name)
+                            : new CareerResponse(Guid.Empty, "Sin carrera"),
                         user.AcademicInformation.Cicle,
                         user.AcademicInformation.Expectative
                     ),
+
                     user.UserName,
-                    user.State
+                    user.State ?? ""
             )).ToListAsync(cancellationToken);
 
             return users;

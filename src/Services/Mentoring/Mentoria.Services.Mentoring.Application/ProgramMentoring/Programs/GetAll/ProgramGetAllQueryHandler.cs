@@ -14,6 +14,7 @@ namespace Mentoria.Services.Mentoring.Application.ProgramMentoring.Programs.GetA
         public async Task<ErrorOr<IReadOnlyList<ProgramResponse>>> Handle(ProgramGetAllQuery request, CancellationToken cancellationToken)
         {
             var programs = await _programRepository.GetAll()
+                .Include(p => p.Career)
                 .Select(p => new ProgramResponse(
                 p.Id.Value,
                 new CareerResponse(
