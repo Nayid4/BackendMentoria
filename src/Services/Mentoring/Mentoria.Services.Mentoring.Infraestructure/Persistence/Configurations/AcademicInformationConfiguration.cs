@@ -38,6 +38,12 @@ namespace Mentoria.Services.Mentoring.Infraestructure.Persistence.Configurations
                 .HasMaxLength(500)
                 .IsRequired();
 
+            builder.HasOne(ai => ai.Career)
+                .WithMany()
+                .HasForeignKey(ai => ai.IdCareer)
+                .OnDelete(DeleteBehavior.Restrict); // O usa .Cascade o .SetNull según tu lógica
+
+
             builder.Property(t => t.CreatedAt)
                 .IsRequired();
 

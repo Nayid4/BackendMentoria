@@ -82,7 +82,7 @@ namespace Mentoria.Services.Mentoring.Application.Users.Create
                 academicInformationCommand.Id,
                 command.AcademicInformation.Code,
                 _authToken.EncryptSHA256(password),
-                "Pendiente"
+                "Aceptado"
             );
 
             _personalInformationRepository.Create(personalInformation);

@@ -55,6 +55,7 @@ namespace Mentoria.Services.Mentoring.Application.Users.GetByFilter
 
 
             var result = users.Select(user => new UserResponse(
+                    user.Id.Value,
                     new PersonalInformationResponse(
                         user.PersonalInformation!.Id.Value,
                         user.PersonalInformation.DNI,

@@ -30,7 +30,7 @@ namespace Mentoria.Services.Mentoring.API.Controller
             );
         }
 
-        [HttpGet("refersh-token")]
+        [HttpGet("refresh-token")]
         [Authorize]
         public async Task<IActionResult> RefescarToken()
         {

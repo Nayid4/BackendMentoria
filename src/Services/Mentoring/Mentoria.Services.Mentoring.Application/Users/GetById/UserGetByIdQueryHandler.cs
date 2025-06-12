@@ -22,6 +22,7 @@ namespace Mentoria.Services.Mentoring.Application.Users.GetById
             }
 
             var userResult = new UserResponse(
+                user.Id.Value,
                     new PersonalInformationResponse(
                         user.PersonalInformation!.Id.Value,
                         user.PersonalInformation.DNI,

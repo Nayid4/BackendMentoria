@@ -3,6 +3,7 @@
 namespace Mentoria.Services.Mentoring.Application.Users.Common
 {
     public record UserResponse(
+        Guid Id,
         PersonalInformationResponse PersonalInformation,
         RoleResponse Role,
         AcademicInformationResponse AcademicInformation,
