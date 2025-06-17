@@ -3,6 +3,8 @@ using Mentoria.Services.Mentoring.Application.ProgramMentoring.ProgramActivities
 using Mentoria.Services.Mentoring.Application.ProgramMentoring.ProgramActivities.DeleteFromProgram;
 using Mentoria.Services.Mentoring.Application.ProgramMentoring.ProgramActivities.GetAll;
 using Mentoria.Services.Mentoring.Application.ProgramMentoring.ProgramActivities.GetById;
+using Mentoria.Services.Mentoring.Application.ProgramMentoring.ProgramActivities.Update;
+using Mentoria.Services.Mentoring.Application.ProgramMentoring.Programs.Update;
 using Microsoft.AspNetCore.Authorization;
 
 namespace Mentoria.Services.Mentoring.API.Controllers
@@ -85,6 +87,25 @@ namespace Mentoria.Services.Mentoring.API.Controllers
             );
         }
 
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Actualizar(Guid id, [FromBody] UpdateProgramActivityCommand comando)
+        {
+            if (comando.Id != id)
+            {
+                List<Error> errores = new()
+                {
+                    Error.Validation("ACtivity.ActualizacionInvalida","El Id de la consulta no es igual al que esta en la solicitud.")
+                };
 
+                return Problem(errores);
+            }
+
+            var resultadoDeActualizarListaTarea = await _mediator.Send(comando);
+
+            return resultadoDeActualizarListaTarea.Match(
+                resp => NoContent(),
+                errores => Problem(errores)
+            );
+        }
     }
 }

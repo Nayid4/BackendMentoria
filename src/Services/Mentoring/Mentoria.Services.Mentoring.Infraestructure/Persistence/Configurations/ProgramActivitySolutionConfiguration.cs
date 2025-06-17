@@ -26,6 +26,11 @@ namespace Mentoria.Services.Mentoring.Infraestructure.Persistence.Configurations
                 valor => new IdUser(valor))
                 .IsRequired();
 
+            builder.HasOne(t => t.User)
+                .WithMany() // o .WithMany(u => u.ProgramUsers) si tienes la colección en User
+                .HasForeignKey(t => t.IdUser)
+                .OnDelete(DeleteBehavior.Cascade);
+
             builder.Property(t => t.Calification)
                 .IsRequired();
 

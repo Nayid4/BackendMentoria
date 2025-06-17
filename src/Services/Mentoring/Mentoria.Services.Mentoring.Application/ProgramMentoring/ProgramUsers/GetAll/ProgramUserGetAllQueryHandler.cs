@@ -15,7 +15,7 @@ namespace Mentoria.Services.Mentoring.Application.ProgramMentoring.ProgramUsers.
 
         public  async Task<ErrorOr<IReadOnlyList<ProgramUserResponse>>> Handle(ProgramUserGetAllQuery request, CancellationToken cancellationToken)
         {
-            if (await _programRepository.GetById(new IdProgram(request.IdProgram)) is not Program program)
+            if (await _programRepository.GetByIdProgram(new IdProgram(request.IdProgram)) is not Program program)
             {
                 return Error.NotFound("ProgramNotFound", "No se encontro el programa.");
             }
@@ -46,7 +46,7 @@ namespace Mentoria.Services.Mentoring.Application.ProgramMentoring.ProgramUsers.
                         userProgram.User.AcademicInformation.Expectative
                 ),
                     userProgram.User.UserName,
-                    userProgram.User.State
+                    userProgram.User.State ?? ""
                 )).ToList();
 
             return programUsers;

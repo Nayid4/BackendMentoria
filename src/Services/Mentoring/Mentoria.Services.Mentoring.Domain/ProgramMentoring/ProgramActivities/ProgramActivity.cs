@@ -16,7 +16,7 @@ namespace Mentoria.Services.Mentoring.Domain.ProgramMentoring.ProgramActivities
 
         public Program? Program { get; private set; } = default!;
 
-        private HashSet<ProgramActivitySolution> _programActivitySolutions = new HashSet<ProgramActivitySolution>();
+        private readonly HashSet<ProgramActivitySolution> _programActivitySolutions = new();
         public IReadOnlyCollection<ProgramActivitySolution> ProgramActivitySolutions => _programActivitySolutions.ToList();
 
         public ProgramActivity() { }
@@ -57,9 +57,9 @@ namespace Mentoria.Services.Mentoring.Domain.ProgramMentoring.ProgramActivities
             return _programActivitySolutions.FirstOrDefault(p => p.Id == idProgramActivitySolution) ?? throw new ArgumentNullException(nameof(idProgramActivitySolution));
         }
 
-        public ProgramActivitySolution GetProgramActivitySolutionByUserId(IdUser idUser)
+        public ProgramActivitySolution? GetProgramActivitySolutionByUserId(IdUser idUser)
         {
-            return _programActivitySolutions.FirstOrDefault(p => p.IdUser == idUser) ?? throw new ArgumentNullException(nameof(idUser));
+            return _programActivitySolutions.FirstOrDefault(p => p.IdUser == idUser);
         }
 
         public void UpdateProgramActivitySolution(ProgramActivitySolution programActivitySolution)

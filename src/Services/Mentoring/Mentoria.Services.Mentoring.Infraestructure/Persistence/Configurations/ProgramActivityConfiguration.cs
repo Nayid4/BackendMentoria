@@ -26,10 +26,6 @@ namespace Mentoria.Services.Mentoring.Infraestructure.Persistence.Configurations
                 .HasMaxLength(50)
                 .IsRequired();
 
-            builder.HasOne(t => t.Program)
-                .WithMany()
-                .HasForeignKey(t => t.IdProgram)
-                .OnDelete(DeleteBehavior.Cascade);
 
             builder.HasMany(t => t.ProgramActivitySolutions)
                 .WithOne()

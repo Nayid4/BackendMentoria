@@ -23,4 +23,14 @@
     <ProjectReference Include="..\Mentoria.Services.Mentoring.Domain\Mentoria.Services.Mentoring.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="MentorAssignments\Common\" />
+    <Folder Include="MentorAssignments\AutomaticAssingment\" />
+    <Folder Include="MentorAssignments\Create\" />
+    <Folder Include="MentorAssignments\Delete\" />
+    <Folder Include="MentorAssignments\GetByUser\" />
+    <Folder Include="MentorAssignments\GetByMentor\" />
+    <Folder Include="MentorAssignments\Update\" />
+  </ItemGroup>
+
 </Project>

@@ -17,11 +17,11 @@ namespace Mentoria.Services.Mentoring.Domain.ProgramMentoring.Programs
         public Career? Career { get; private set; } = default!;
 
 
-        private HashSet<ProgramUser> _users = new HashSet<ProgramUser>();
-        public IReadOnlyCollection<ProgramUser> Users => _users.ToList();
+        private readonly HashSet<ProgramUser> _users = new();
+        public IReadOnlyCollection<ProgramUser> Users => _users;
 
-        private HashSet<ProgramActivity> _activities = new HashSet<ProgramActivity>();
-        public IReadOnlyCollection<ProgramActivity> Activities => _activities.ToList();
+        private readonly HashSet<ProgramActivity> _activities = new();
+        public IReadOnlyCollection<ProgramActivity> Activities => _activities;
 
         public Program(IdProgram id, IdCareer idCareer, string name, string type, string description, int maximumNumberOfParticipants)
             : base(id)
