@@ -10,7 +10,7 @@ namespace Mentoria.Services.Mentoring.Domain.ProgramMentoring.ProgramUsers
         public IdProgram IdProgram { get; private set; } = default!;
 
         public User? User { get; private set; } = default!;
-        public Program? Program { get; private set; } = default!;
+        //public Program? Program { get; private set; } = default!;
 
         public ProgramUser() { }
         public ProgramUser(IdProgramUser id, IdUser idUser, IdProgram idProgram) : base(id)

@@ -16,7 +16,7 @@ namespace Mentoria.Services.Mentoring.Application.ProgramMentoring.ProgramActivi
 
         public async Task<ErrorOr<IReadOnlyList<ProgramActivityResponse>>> Handle(ProgramActivityGetAllQuery request, CancellationToken cancellationToken)
         {
-            if (await _programRepository.GetById(new IdProgram(request.IdProgram)) is not Program program)
+            if (await _programRepository.GetByIdProgram(new IdProgram(request.IdProgram)) is not Program program)
             {
                 return Error.NotFound("ProgramNotFound", "No se encontro el programa.");
             }

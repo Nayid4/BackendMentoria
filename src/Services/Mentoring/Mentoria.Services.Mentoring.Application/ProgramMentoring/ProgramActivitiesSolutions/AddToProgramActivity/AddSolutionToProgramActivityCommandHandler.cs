@@ -19,14 +19,20 @@ namespace Mentoria.Services.Mentoring.Application.ProgramMentoring.ProgramActivi
         }
         public async Task<ErrorOr<Unit>> Handle(AddSolutionToProgramActivityCommand request, CancellationToken cancellationToken)
         {
-            if (await _programActivityRepository.GetById(new IdProgramActivity(request.IdProgramActivity)) is not ProgramActivity programActivity)
+            if (await _programActivityRepository.GetByIdProgramActivity(new IdProgramActivity(request.IdProgramActivity)) is not ProgramActivity programActivity)
             {
                 return Error.NotFound("ProgramActivityNotFound", "No se encontro la actividad del programa.");
             }
-            if (await _userRepository.GetById(new IdUser(request.IdUser)) is not null)
+            if (await _userRepository.GetById(new IdUser(request.IdUser)) is not User user)
+            {
+                return Error.Conflict("Usuario", "El usuario no se encuentra en el programa.");
+            }
+
+            if (programActivity.GetProgramActivitySolutionByUserId(user.Id) is ProgramActivitySolution programActivitySolution2)
             {
                 return Error.Conflict("ProgramActivitySolutionAlreadyInProgram", "La solucion ya se encuentra en la actividad del programa.");
             }
+
             var programActivitySolution = new ProgramActivitySolution(
                 new IdProgramActivitySolution(Guid.NewGuid()),
                 new IdProgramActivity(request.IdProgramActivity),

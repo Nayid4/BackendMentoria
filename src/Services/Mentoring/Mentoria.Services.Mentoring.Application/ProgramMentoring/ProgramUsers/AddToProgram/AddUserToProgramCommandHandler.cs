@@ -20,7 +20,7 @@ namespace Mentoria.Services.Mentoring.Application.ProgramMentoring.ProgramUsers.
 
         public async Task<ErrorOr<Unit>> Handle(AddUserToProgramCommand request, CancellationToken cancellationToken)
         {
-            if(await _programRepository.GetById(new IdProgram(request.IdProgram)) is not Program program)
+            if(await _programRepository.GetByIdProgram(new IdProgram(request.IdProgram)) is not Program program)
             {
                 return Error.NotFound("ProgramNotFound", "No se encontro el programa.");
             }

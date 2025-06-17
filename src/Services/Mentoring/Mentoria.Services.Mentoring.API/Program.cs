@@ -33,6 +33,8 @@ app.UseExceptionHandler("/error");
 
 app.UseHttpsRedirection();
 
+// Habilitamos wwwroot para servir archivos
+app.UseStaticFiles();
 
 app.UseCors("web");
 

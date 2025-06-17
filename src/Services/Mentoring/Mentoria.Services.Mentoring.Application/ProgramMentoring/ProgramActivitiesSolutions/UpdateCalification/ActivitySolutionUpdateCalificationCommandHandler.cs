@@ -18,7 +18,7 @@ namespace Mentoria.Services.Mentoring.Application.ProgramMentoring.ProgramActivi
 
         public async Task<ErrorOr<Unit>> Handle(ActivitySolutionUpdateCalificationCommand request, CancellationToken cancellationToken)
         {
-            if (await _programActivityRepository.GetById(new IdProgramActivity(request.IdProgramActivity)) is not ProgramActivity programActivity)
+            if (await _programActivityRepository.GetByIdProgramActivity(new IdProgramActivity(request.IdProgramActivity)) is not ProgramActivity programActivity)
             {
                 return Error.NotFound("ProgramActivityNotFound", "No se encontro la actividad del programa.");
             }
