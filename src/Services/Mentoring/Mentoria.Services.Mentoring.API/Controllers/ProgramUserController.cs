@@ -2,6 +2,7 @@
 using Mentoria.Services.Mentoring.Application.ProgramMentoring.ProgramUsers.AddToProgram;
 using Mentoria.Services.Mentoring.Application.ProgramMentoring.ProgramUsers.DeleteFromProgram;
 using Mentoria.Services.Mentoring.Application.ProgramMentoring.ProgramUsers.GetAll;
+using Mentoria.Services.Mentoring.Application.ProgramMentoring.ProgramUsers.GetAllByUser;
 using Microsoft.AspNetCore.Authorization;
 
 namespace Mentoria.Services.Mentoring.API.Controllers
@@ -22,6 +23,17 @@ namespace Mentoria.Services.Mentoring.API.Controllers
         public async Task<IActionResult> ListarTodos(Guid id)
         {
             var resultadosDeListarPorId = await _mediator.Send(new ProgramUserGetAllQuery(id));
+
+            return resultadosDeListarPorId.Match(
+                resp => Ok(resp),
+                errores => Problem(errores)
+            );
+        }
+
+        [HttpGet("programs-by-user/{id}")]
+        public async Task<IActionResult> ListarTodosPorUsuario(Guid id)
+        {
+            var resultadosDeListarPorId = await _mediator.Send(new ProgramUserGetAllByUserQuery(id));
 
             return resultadosDeListarPorId.Match(
                 resp => Ok(resp),
