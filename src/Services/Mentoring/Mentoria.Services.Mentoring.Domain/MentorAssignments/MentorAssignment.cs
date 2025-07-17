@@ -13,13 +13,14 @@ namespace Mentoria.Services.Mentoring.Domain.MentorAssignments
         public User? Mentor { get; private set; } = default!;
 
         public MentorAssignment() { }
-        public MentorAssignment(IdMentorAssignment id, IdUser idUser, IdUser idMentor, string state) : base(id)
+        public MentorAssignment(IdMentorAssignment id, IdUser idMentor, IdUser idUser) : base(id)
         {
             IdUser = idUser ?? throw new ArgumentNullException(nameof(idUser));
             IdMentor = idMentor ?? throw new ArgumentNullException(nameof(idMentor));
+            
         }
 
-        public void Update(IdUser idUser, IdUser idMentor)
+        public void Update(IdUser idMentor, IdUser idUser)
         {
             IdUser = idUser ?? throw new ArgumentNullException(nameof(idUser));
             IdMentor = idMentor ?? throw new ArgumentNullException(nameof(idMentor));

@@ -56,6 +56,12 @@ namespace Mentoria.Services.Mentoring.Domain.ProgramMentoring.Programs
             return _users.FirstOrDefault(x => x.User!.Id == idProgramUser) ?? null;
         }
 
+        public bool GetUserByIdUser(IdUser idUser)
+        {
+            if (idUser == null) throw new ArgumentNullException(nameof(idUser));
+            return _users.Any(u => u.IdUser == idUser);
+        }
+
         public void RemoveUser(ProgramUser user)
         {
             if (user == null) throw new ArgumentNullException(nameof(user));
